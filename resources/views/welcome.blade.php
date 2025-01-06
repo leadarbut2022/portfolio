@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
@@ -10,10 +9,11 @@
     <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         body {
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #53354a);
-            font-family: 'Arial', sans-serif;
+            /* font-family: 'Arial', sans-serif; */
             height: 100vh;
             margin: 0;
             overflow: hidden;
@@ -21,6 +21,8 @@
             justify-content: center;
             align-items: center;
             color: #fff;
+            font-family: 'Roboto', sans-serif;
+
         }
         h1 {
             font-size: 3rem;
@@ -34,17 +36,75 @@
             user-select: none;
             transition: transform 0.2s ease-in-out;
         }
+        h2 {
+            font-size: 3rem;
+            position: absolute;
+            top: 23%;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+            z-index: 10;
+            color: #eaeaea;
+            user-select: none;
+            transition: transform 0.2s ease-in-out;
+        }
         canvas {
             position: absolute;
             top: 0;
             left: 0;
         }
+        .welcome-message {
+            /* background-color: #ffffff; */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 36px;
+            /* color: #007BFF; */
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 36px;
+            /* color: #007BFF; */
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        p {
+            font-size: 18px;
+            /* color: #555; */
+            line-height: 1.6;
+        }
+
+        .highlight {
+            /* color: #007BFF; */
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
-    
-    <h1 id="clickMeText" onclick="openAboutPage()">Click Me</h1>
-    <h1 id="clickMeText" onclick="openAboutPage()">Hi I`M Shami</h1>
+
+<h1  class="animate__animated  animate__fadeInUpBig  animate__delay-0.1s">Welcome to my portfolio!</h1>
+
+<h2 onclick="openAboutPage(this)" class="animate__animated  animate__backInLeft   animate__delay-3s ">portfolio!</h2>
+<br>
+    <!-- <h1 id="clickMeText" onclick="openAboutPage()">Portfolio</h1> -->
+    <!-- <h1 id="clickMeText" onclick="openAboutPage()">  Ahmed , a back end web developer</h1> -->
+    <!-- <div class="image-frame">
+        <img src="storage/pros/January2025/222.png" alt="Framed Image">
+    </div> -->
+    <div class="welcome-message animate__animated  animate__fadeInUpBig  animate__delay-1s">
+
+    <p class="">I'm Shami, a passionate back-end developer, dedicated to crafting smooth and efficient server-side solutions. Let's build something amazing! </p>
+    <!-- <a href="{{ route('projects') }}" class="animate__animated animate__fadeInUpBig animate__delay-2s">My Portfolio!</a> -->
+       
+</div>
+       
+
 
     <canvas id="physicsCanvas"></canvas>
 
@@ -165,6 +225,18 @@
 
         function openAboutPage() {
             window.location.href = "{{ route('projects') }}";
+        }
+      
+
+        function openAboutPage(element) {
+        
+            element.classList.remove('animate__backInLeft', 'animate__delay-3s');
+            element.classList.add('animate__hinge');
+
+            element.style.animationDuration = '2s';
+            setTimeout(() => {
+                window.location.href = "{{ route('projects') }}";
+            }, 200); // 2000ms matches the animation duration
         }
     </script>
 </body>
