@@ -27,7 +27,8 @@
             background-color: #222;
             margin-bottom: 30px;
             transition: transform 0.3s ease;
-            height: 100%;
+            height: 516px;
+        
         }
         .project-card:hover {
             transform: scale(1.05);
