@@ -2,7 +2,9 @@
 
 @section('admin')
 
-
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
     
 
         <h1 class="animate__animated animate__zoomInDown  animate__delay-0.1s">My Projects</h1>
@@ -15,7 +17,7 @@
         
             <!-- Project 1 -->
             <div class="project-card  ">
-                <img src="storage/{{$pro->img1}}" alt="Project Image">
+                <img src="public/storage/{{$pro->img1}}" alt="Project Image">
                 <div class="project-content">
                     <div class="project-title">{{$pro->name}}</div>
                     <div class="project-description">
