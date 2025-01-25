@@ -5,7 +5,10 @@
 <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
-    
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
 
         <h1 class="animate__animated animate__zoomInDown  animate__delay-0.1s">My Projects</h1>
 
@@ -22,46 +25,47 @@
                     <div class="project-title">{{$pro->name}}</div>
                     <div class="project-description">
                     {{$pro->des}}
-                    </div>
-                        @php
-                        $data = [];
+                    <div>
+    @php
+        $data = [];
 
-                        if ($pro->playstore_stat == true) {
-                            $data['play'] = [
-                                'link' => $pro->playstore,
-                                'icon' => $pro->playstore_icon,
-                            ];
-                        }
+        if ($pro->playstore_stat) {
+            $data['play'] = [
+                'link' => $pro->playstore,
+                'icon' => '<i class="ri-play-store-fill"></i>', // تحقق من الأيقونة الصحيحة
+            ];
+        }
 
-                        if ($pro->appstore_stat == true) {
-                            $data['app'] = [
-                                'link' => $pro->appstore,
-                                'icon' => $pro->appstore_icon,
-                            ];
-                        }
+        if ($pro->appstore_stat) {
+            $data['app'] = [
+                'link' => $pro->appstore,
+                'icon' => '<i class="ri-apple-fill"></i>', // تحقق من الأيقونة الصحيحة
+            ];
+        }
 
-                        if ($pro->github_stat == true) {
-                            $data['github'] = [ 
-                                'link' => $pro->github,
-                                'icon' => $pro->github_icon,
-                            ];
-                        }
+        if ($pro->github_stat) {
+            $data['github'] = [
+                'link' => $pro->github,
+                'icon' => '<i class="ri-github-fill"></i>', 
+            ];
+        }
 
-                        if ($pro->demo_stat == true) {
-                            $data['demo'] = [
-                                'link' => $pro->demo,
-                                'icon' => $pro->demo_icon,
-                            ];
-                        }
-                        @endphp
+        if ($pro->demo_stat) {
+            $data['demo'] = [
+                'link' => $pro->demo,
+                'icon' => '<i class="ri-window-fill"></i>', // تحقق من الأيقونة الصحيحة
+            ];
+        }
+    @endphp
 
-                        <div class="store-buttons">
-                            @foreach ($data as $item)
-                                <a href="{{ $item['link'] }}" class="btn-custom" target="_blank">
-                                    {!! $item['icon'] !!} 
-                                </a>
-                            @endforeach
-                        </div>
+    <div class="store-buttons">
+        @foreach ($data as $item)
+            <a href="{{ $item['link'] }}" class="btn-custom" target="_blank">
+                {!! $item['icon'] !!}  <!-- استخدم الإخراج غير المشفر لعرض الأيقونات -->
+            </a>
+        @endforeach
+    </div>
+</div>
                         </div>
 
                 </div>
