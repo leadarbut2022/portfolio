@@ -18,7 +18,7 @@
     @if(isset($pros) && count($pros) > 0)
         @foreach ($pros as $pro)
             <div class="project-card">
-                <img src="{{ url('storage/' . ($pro->img1 ?? 'default_image.jpg')) }}" alt="Project Image">
+                <img src="{{ url('public/storage/' . ($pro->img1 ?? 'default_image.jpg')) }}" alt="Project Image">
                 <div class="project-content">
                     <div class="project-title">{{ $pro->name }}</div>
                     <div class="project-description">
