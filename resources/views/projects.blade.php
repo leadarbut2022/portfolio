@@ -139,7 +139,7 @@
 
     .phone-frame img {
         width: 100%;
-        height: 100%;
+        height: 46%;
         object-fit: cover;
         border-radius: 35px;
     }
