@@ -1,26 +1,28 @@
-@extends('layout')
+
+
+
+
+
+
+
+    @extends('layout')
 
 @section('admin')
 
-<link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"/>
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+<h1 class="animate__animated animate__zoomInDown animate__delay-0.1s">My Projects</h1>
 
+<!-- Swiper Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 
-        <h1 class="animate__animated animate__zoomInDown  animate__delay-0.1s">My Projects</h1>
-
-        <!-- Projects Section -->
-<div id="projectsSection" class="project-container">
-
-    @if(isset($pros) && count($pros) > 0)
-        @foreach ($pros as $pro)
-            <div class="project-card">
-                <img src="{{ url('public/storage/' . ($pro->img1 ?? 'default_image.jpg')) }}" alt="Project Image">
-                <div class="project-content">
+<!-- Projects Section with Swiper -->
+<div id="projectsSection" class="projects-container">
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            @if(isset($pros) && count($pros) > 0)
+                @foreach ($pros as $pro)
+                    <div class="swiper-slide phone-frame">
+                        <img src="{{ url('public/storage/' . ($pro->img1 ?? 'default_image.jpg')) }}" alt="Project Image">
+                        <div class="project-content">
                     <div class="project-title">{{ $pro->name }}</div>
                     <div class="project-description">
                         {{ $pro->des }}
@@ -48,13 +50,110 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
-        @endforeach
-    @else
-        <p>No projects are available.</p>
-    @endif
+                    </div>
+                @endforeach
+            @else
+                <p>No projects are available.</p>
+            @endif
+        </div>
 
+        <!-- Navigation Buttons -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
 </div>
-    @endsection
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        new Swiper('.swiper', {
+            loop: true, 
+            slidesPerView: 3, 
+            spaceBetween: 20, 
+            centeredSlides: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                1024: { slidesPerView: 3 },
+                768: { slidesPerView: 2 },
+                480: { slidesPerView: 1 },
+            }
+        });
+    });
+</script>
+
+<!-- Styles -->
+<style>
+    body {
+        background: radial-gradient(circle, #001f3f, #000);
+        color: white;
+        text-align: center;
+    }
+
+    .projects-container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .swiper {
+        padding: 50px 0;
+    }
+
+    .swiper-slide {
+        position: relative;
+        width: 250px;
+        height: 500px;
+        perspective: 1000px;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .swiper-slide:nth-child(odd) {
+        transform: rotateY(10deg);
+    }
+
+    .swiper-slide:nth-child(even) {
+        transform: rotateY(-10deg);
+    }
+
+    .phone-frame {
+        background: black;
+        border-radius: 40px;
+        border: 5px solid #333;
+        overflow: hidden;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .phone-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 35px;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        color: white;
+    }
+
+    .swiper-pagination-bullet {
+        background-color: white;
+    }
+</style>
+
+@endsection
+
+
     
-    <!-- انا عندي ملفين واحد من النوع text والثاني من النوع اكسيل اريد ان تقوم بوضع البيانات في ملف الاكسيل   نفس التنسيق البيانات الموجوده بداخله مثال هناك ملابس  لو افترضنا  ان المعرف الذي سوف تأخذه هو  9   ثم اضفنا بعدها ملابس اطفال سوف تأخذ معرف 10  ولكن يوجد بها  حقل يسمي parent_id سوف يأخذ معرف اللابس  او الفئه اللتي ينتمي اليها  هل فهمت -->
