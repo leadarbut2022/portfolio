@@ -88,10 +88,15 @@
 </head>
 <body>
 
-<h1  class="animate__animated  animate__fadeInUpBig  animate__delay-0.1s">Welcome to my portfolio!</h1>
+<!-- <h1  class="animate__animated  animate__fadeInUpBig  animate__delay-0.1s">Welcome to my portfolio!</h1>
 
-<h2 onclick="openAboutPage(this)" class="animate__animated  animate__backInLeft   animate__delay-3s ">portfolio!</h2>
+<h2 onclick="openAboutPage(this)" class="animate__animated  animate__backInLeft   animate__delay-3s ">portfolio!</h2> -->
 <br>
+<h1 class="animate__animated animate__fadeInUpBig animate__delay-0.1s">Welcome to my portfolio!</h1>
+
+<!-- رابط للانتقال إلى صفحة أخرى -->
+<h2 onclick="openAboutPage(this)" class="animate__animated animate__backInLeft animate__delay-3s">Portfolio!</h2>
+
     <!-- <h1 id="clickMeText" onclick="openAboutPage()">Portfolio</h1> -->
     <!-- <h1 id="clickMeText" onclick="openAboutPage()">  Ahmed , a back end web developer</h1> -->
     <!-- <div class="image-frame">
@@ -99,9 +104,83 @@
     </div> -->
     <div class="welcome-message animate__animated  animate__fadeInUpBig  animate__delay-1s">
 
-    <p class="">I'm Shami, a passionate back-end developer, dedicated to crafting smooth and efficient server-side solutions. Let's build something amazing! </p>
+    <!-- <p class="">I'm Shami, a passionate back-end developer, dedicated to crafting smooth and efficient server-side solutions. Let's build something amazing! </p> -->
     <!-- <a href="{{ route('projects') }}" class="animate__animated animate__fadeInUpBig animate__delay-2s">My Portfolio!</a> -->
-       
+    <style>
+        /* تأثير شاشة الكونسول */
+        .terminal {
+            font-family: "Courier New", monospace;
+            font-size: 18px;
+            color: #00ff00; /* لون أخضر نيون يشبه الكود */
+            background-color: #000;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        /* المؤشر اللامع */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background-color: #00ff00;
+            margin-left: 3px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* تحسينات العناوين */
+        h1, h2 {
+            text-align: center;
+            font-family: "Arial", sans-serif;
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        body {
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+
+
+    <!-- عنوان متحرك عند الدخول -->
+
+    <!-- تأثير الكتابة -->
+    <div class="terminal">
+        <span id="typing-text"></span><span class="cursor">|</span>
+    </div>
+
+    <script>
+        const text = "I'm Shami, a passionate back-end developer, dedicated to crafting smooth and efficient server-side solutions. Let's build something amazing!";
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 50);
+            }
+        }
+
+        function openAboutPage(element) {
+            element.style.color = "#00ff00"; // تغيير اللون عند النقر
+            window.location.href = "about.html"; // الانتقال لصفحة أخرى (تعديل الرابط حسب الحاجة)
+        }
+
+        window.onload = typeEffect;
+    </script>
+
+
 </div>
        
 

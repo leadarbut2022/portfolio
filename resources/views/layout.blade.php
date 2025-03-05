@@ -309,6 +309,14 @@
         }
  
         </style>
+        <style>
+       h1, h2 ,li {
+            text-align: center;
+            font-family: "Arial", sans-serif;
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+</style>
 </head>
 <body>
 <nav class="navbar animate__animated animate__wobble  animate__delay-0.1s">
