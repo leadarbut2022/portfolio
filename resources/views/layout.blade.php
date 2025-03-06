@@ -199,12 +199,13 @@
             background-color: #ff5252;
         }
         .store-buttons {
+
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
         .store-buttons a {
-            width: 48%;
+            font-size: 13px;
         }
         h1 {
             text-align: center;

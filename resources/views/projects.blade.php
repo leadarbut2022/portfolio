@@ -46,7 +46,7 @@
 
                     <div class="store-buttons">
                         @foreach ($data as $item)
-                            <a href="{{ $item['link'] }}" class="btn-custom" target="_blank">{!! $item['icon'] !!}</a>
+                            <a href="{{ $item['link'] }}" class="btn-custom link-a" target="_blank">{!! $item['icon'] !!}</a>
                         @endforeach
                     </div>
                 </div>
@@ -150,6 +150,10 @@
 
     .swiper-pagination-bullet {
         background-color: white;
+    }
+    .link-a{
+        font-size: 13px;
+
     }
 </style>
 
