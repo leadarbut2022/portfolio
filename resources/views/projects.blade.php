@@ -128,7 +128,7 @@
     }
     .terminal-body img {
         width: 100%;
-        height: auto;
+        max-height: 300px;
         margin-bottom: 10px;
         border-radius: 3px;
     }
