@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 <!-- Projects Section in Grid Layout -->
-<div id="projectsSection" class="projects-container animate__animated animate__fadeInUp animate__delay-0.5s">
+<div id="projectsSection" class="projects-container ">
     <div class="project-grid">
         @if(isset($pros) && count($pros) > 0)
             @foreach ($pros as $pro)
-                <div class="terminal-frame animate__animated animate__zoomIn animate__delay-0.8s">
+                <div class="terminal-frame   ">
                     <div class="terminal-header">
                         <div class="terminal-buttons">
                             <span class="red"></span>
@@ -71,10 +71,17 @@
         padding: 20px;
     }
 
+    /* تعديل العرض ليكون عمودين في كل صف */
     .project-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+    }
+    /* في الشاشات الصغيرة، عرض عمود واحد */
+    @media (max-width: 768px) {
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     /* تصميم التيرمنال */
@@ -88,7 +95,6 @@
     }
     .terminal-frame:hover {
         transform: scale(1.03);
-        /* opacity: 5; */
     }
     .terminal-header {
         background: #333;
