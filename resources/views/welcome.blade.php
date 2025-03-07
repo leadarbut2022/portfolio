@@ -76,7 +76,7 @@
     <div class="terminal">
       <span id="typing-text"></span><span class="cursor">|</span>
     </div>
-    <h2 class="animate__animated animate__backInLeft animate__delay-1s" onclick="goToPortfolio()">Portfolio!</h2>
+    <!-- <h2 class="animate__animated animate__backInLeft animate__delay-1s" onclick="goToPortfolio()">Portfolio!</h2> -->
   </div>
 
   <!-- canvas لخلفية الحركة -->
