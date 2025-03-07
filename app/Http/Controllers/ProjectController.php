@@ -9,7 +9,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $pros =Pro::all();
+        $pros = Pro::latest()->get();
         return view('projects',compact('pros'));
     }
 }
