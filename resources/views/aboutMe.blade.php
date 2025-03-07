@@ -11,8 +11,11 @@
     <div class="terminal-body">
         <div class="about-content">
             <h2>Welcome to My Terminal</h2>
-            <p>Hello, I'm [Your Name]. I'm a passionate developer with expertise in web development, software engineering, and creative design. I love turning ideas into innovative solutions and continuously learning new technologies.</p>
-            <p>This page is a glimpse into my world, showcasing my skills, projects, and experiences. Stay tuned for more updates and insights about my journey!</p>
+            @foreach ( $AboutMe  as $itm)
+               <p>{{  $itm->about_mes}}</p>
+            @endforeach
+            <!-- <p>Hello, I'm [Your Name]. I'm a passionate developer with expertise in web development, software engineering, and creative design. I love turning ideas into innovative solutions and continuously learning new technologies.</p> -->
+            <!-- <p>This page is a glimpse into my world, showcasing my skills, projects, and experiences. Stay tuned for more updates and insights about my journey!</p> -->
         </div>
     </div>
 </div>

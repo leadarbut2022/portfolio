@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutMe;
+use App\Models\Contact;
 use App\Models\Experience;
 use Illuminate\Http\Request;
 
@@ -17,13 +19,13 @@ class ExperienceController extends Controller
 
     public function about()
     {
-        $experiences = Experience::all();
+        $AboutMe = AboutMe::all();
 
-        return view('aboutMe',compact('experiences'));
+        return view('aboutMe',compact('AboutMe'));
     }
     public function contact()
     {
-        $experiences = Experience::all();
+        $experiences = Contact::all();
 
         return view('contact',compact('experiences'));
     }
