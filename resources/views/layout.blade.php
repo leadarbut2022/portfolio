@@ -167,7 +167,6 @@
             font-size: 1.6rem;
             font-weight: bold;
             margin-bottom: 15px;
-            display: none;
         }
         .project-description {
             display: none;
@@ -195,7 +194,7 @@
             width: 89%;
         }
         .store-buttons a {
-            width: 20%;
+            width: 19%;
           font-size: 14px;
         }
         h1 {
