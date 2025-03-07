@@ -139,9 +139,9 @@
 
     .phone-frame img {
         width: 100%;
-        height: 46%;
+        height: 58%;
         object-fit: cover;
-        border-radius: 35px;
+        border-radius: 0px;
     }
 
     .swiper-button-next, .swiper-button-prev {

@@ -40,16 +40,14 @@
         }
         .project-content {
             padding: 20px;
+            height: 100%;
         }
         .project-title {
             font-size: 1.6rem;
             font-weight: bold;
             margin-bottom: 15px;
         }
-        .project-description {
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
+
         .btn-custom {
             background-color: #34ace0;
             color: #fff;
@@ -65,14 +63,7 @@
         .btn-custom:hover {
             background-color: #ff5252;
         }
-        .store-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .store-buttons a {
-            width: 21%%;
-        }
+     
         h1 {
             text-align: center;
             color: #fff;
@@ -171,15 +162,15 @@
             height: 250px;
             object-fit: cover;
         }
-        .project-content {
-            padding: 20px;
-        }
+
         .project-title {
             font-size: 1.6rem;
             font-weight: bold;
             margin-bottom: 15px;
+            display: none;
         }
         .project-description {
+            display: none;
             font-size: 1rem;
             margin-bottom: 20px;
         }
@@ -199,12 +190,13 @@
             background-color: #ff5252;
         }
         .store-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
+            position: fixed;
+            bottom: 17px;
+            width: 89%;
         }
         .store-buttons a {
-            width: 21%;
+            width: 20%;
+          font-size: 14px;
         }
         h1 {
             text-align: center;
