@@ -11,7 +11,7 @@
     <div class="terminal-body">
         <div class="contact-content">
             <h2>Contact Me</h2>
-            <p>If you would like to reach out, please feel free to contact me via the following channels:</p>
+            <p>If you would like , please feel free to contact me via the following channels:</p>
             <ul>
             @foreach ($contacts as $contact)
             <li>Email: <a href="mailto:{{ $contact->email }}" style="color:#00ff00;">{{ $contact->email }}</a></li>
