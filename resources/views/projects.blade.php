@@ -28,7 +28,7 @@
                             @php
                                 $data = [];
                                 if ($pro->playstore_stat) {
-                                    $data['play'] = ['link' => $pro->playstore, 'icon' => '<i class="ri-play-store-fill"></i>'];
+                                    $data['play'] = ['link' => $pro->playstore, 'icon' => '<i class="ri-google-play-line"></i>'];
                                 }
                                 if ($pro->appstore_stat) {
                                     $data['app'] = ['link' => $pro->appstore, 'icon' => '<i class="ri-apple-fill"></i>'];
@@ -42,7 +42,7 @@
                             @endphp
 
                             <div class="store-buttons">
-                                @foreach ($data as $item)
+                                @foreach ($data as $key => $item)
                                     <a href="{{ $item['link'] }}" class="btn-custom link-a animate__animated animate__bounceIn animate__delay-1s" target="_blank">{!! $item['icon'] !!}</a>
                                 @endforeach
                             </div>
@@ -84,10 +84,11 @@
         border-radius: 5px;
         overflow: hidden;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-        transition: transform 0.3s ease;
+        transition: transform 0.9s ease;
     }
     .terminal-frame:hover {
         transform: scale(1.03);
+        /* opacity: 5; */
     }
     .terminal-header {
         background: #333;
