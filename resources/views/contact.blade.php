@@ -13,10 +13,13 @@
             <h2>Contact Me</h2>
             <p>If you would like to reach out, please feel free to contact me via the following channels:</p>
             <ul>
-                <li>Email: <a href="mailto:your.email@example.com" style="color:#00ff00;">your.email@example.com</a></li>
-                <li>Phone: <a href="tel:+1234567890" style="color:#00ff00;">+1234567890</a></li>
-                <li>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank" style="color:#00ff00;">LinkedIn Profile</a></li>
-                <li>GitHub: <a href="https://github.com/yourusername" target="_blank" style="color:#00ff00;">GitHub Profile</a></li>
+            @foreach ($contacts as $contact)
+            <li>Email: <a href="mailto:{{ $contact->email }}" style="color:#00ff00;">{{ $contact->email }}</a></li>
+            <li>Phone: <a href="tel:{{ $contact->phone }}" style="color:#00ff00;">{{ $contact->phone }}</a></li>
+            <li>LinkedIn: <a href="{{ $contact->linkedin }}" target="_blank" style="color:#00ff00;">LinkedIn Profile</a></li>
+            <li>GitHub: <a href="{{ $contact->github }}" target="_blank" style="color:#00ff00;">GitHub Profile</a></li>
+            <li>WhatsApp: <a href="https://wa.me/{{ $contact->whatsapp }}" target="_blank" style="color:#00ff00;">Chat on WhatsApp</a></li>
+        @endforeach
             </ul>
         </div>
     </div>

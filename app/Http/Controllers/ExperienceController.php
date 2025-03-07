@@ -25,9 +25,9 @@ class ExperienceController extends Controller
     }
     public function contact()
     {
-        $experiences = Contact::all();
+        $contacts = Contact::all();
 
-        return view('contact',compact('experiences'));
+        return view('contact',compact('contacts'));
     }
 
 
