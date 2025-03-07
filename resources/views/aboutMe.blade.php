@@ -11,9 +11,13 @@
     <div class="terminal-body">
         <div class="about-content">
             <h2>Welcome to My Terminal</h2>
-            @foreach ( $AboutMe  as $itm)
-               <p>{{  $itm->description}}</p>
-            @endforeach
+            @foreach ($contacts as $contact)
+            <li>Email: <a href="mailto:{{ $contact->email }}" style="color:#00ff00;">{{ $contact->email }}</a></li>
+            <li>Phone: <a href="tel:{{ $contact->phone }}" style="color:#00ff00;">{{ $contact->phone }}</a></li>
+            <li>LinkedIn: <a href="{{ $contact->linkedin }}" target="_blank" style="color:#00ff00;">LinkedIn Profile</a></li>
+            <li>GitHub: <a href="{{ $contact->github }}" target="_blank" style="color:#00ff00;">GitHub Profile</a></li>
+            <li>WhatsApp: <a href="https://wa.me/{{ $contact->whatsapp }}" target="_blank" style="color:#00ff00;">Chat on WhatsApp</a></li>
+        @endforeach
             <!-- <p>Hello, I'm [Your Name]. I'm a passionate developer with expertise in web development, software engineering, and creative design. I love turning ideas into innovative solutions and continuously learning new technologies.</p> -->
             <!-- <p>This page is a glimpse into my world, showcasing my skills, projects, and experiences. Stay tuned for more updates and insights about my journey!</p> -->
         </div>
