@@ -13,4 +13,22 @@ class ExperienceController extends Controller
 
         return view('experience',compact('experiences'));
     }
+
+
+    public function about()
+    {
+        $experiences = Experience::all();
+
+        return view('aboutMe',compact('experiences'));
+    }
+    public function contact()
+    {
+        $experiences = Experience::all();
+
+        return view('contact',compact('experiences'));
+    }
+
+
+
+    
 }

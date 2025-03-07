@@ -1,99 +1,60 @@
-
-
-
-
-
-
-
-    @extends('layout')
+@extends('layout')
 
 @section('admin')
 
-<h1 class="animate__animated animate__zoomInDown animate__delay-0.1s">My Projects</h1>
+<!-- Optional: Animate.css for animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-<!-- Swiper Styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-
-<!-- Projects Section with Swiper -->
-<div id="projectsSection" class="projects-container">
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            @if(isset($pros) && count($pros) > 0)
-                @foreach ($pros as $pro)
-                    <div class="swiper-slide phone-frame">
+<!-- Projects Section in Grid Layout -->
+<div id="projectsSection" class="projects-container animate__animated animate__fadeInUp animate__delay-0.5s">
+    <div class="project-grid">
+        @if(isset($pros) && count($pros) > 0)
+            @foreach ($pros as $pro)
+                <div class="terminal-frame animate__animated animate__zoomIn animate__delay-0.8s">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="red"></span>
+                            <span class="yellow"></span>
+                            <span class="green"></span>
+                        </div>
+                        <div class="terminal-title">Project Terminal</div>
+                    </div>
+                    <div class="terminal-body">
                         <img src="{{ url('public/storage/' . ($pro->img1 ?? 'default_image.jpg')) }}" alt="Project Image">
                         <div class="project-content">
-                    <div class="project-title">{{ $pro->name }}</div>
-                    <div class="project-description">
-                        {{ $pro->des }}
-                    </div>
+                            <div class="project-title">{{ $pro->name }}</div>
+                            <div class="project-description">{{ $pro->des }}</div>
+                            
+                            @php
+                                $data = [];
+                                if ($pro->playstore_stat) {
+                                    $data['play'] = ['link' => $pro->playstore, 'icon' => '<i class="ri-play-store-fill"></i>'];
+                                }
+                                if ($pro->appstore_stat) {
+                                    $data['app'] = ['link' => $pro->appstore, 'icon' => '<i class="ri-apple-fill"></i>'];
+                                }
+                                if ($pro->github_stat) {
+                                    $data['github'] = ['link' => $pro->github, 'icon' => '<i class="ri-github-fill"></i>'];
+                                }
+                                if ($pro->demo_stat) {
+                                    $data['demo'] = ['link' => $pro->demo, 'icon' => '<i class="ri-window-fill"></i>'];
+                                }
+                            @endphp
 
-                    @php
-                        $data = [];
-                        if ($pro->playstore_stat) {
-                            $data['play'] = ['link' => $pro->playstore, 'icon' => '<i class="ri-play-store-fill"></i>'];
-                        }
-                        if ($pro->appstore_stat) {
-                            $data['app'] = ['link' => $pro->appstore, 'icon' => '<i class="ri-apple-fill"></i>'];
-                        }
-                        if ($pro->github_stat) {
-                            $data['github'] = ['link' => $pro->github, 'icon' => '<i class="ri-github-fill"></i>'];
-                        }
-                        if ($pro->demo_stat) {
-                            $data['demo'] = ['link' => $pro->demo, 'icon' => '<i class="ri-window-fill"></i>'];
-                        }
-                    @endphp
-
-                    <div class="store-buttons">
-                        @foreach ($data as $item)
-                            <a href="{{ $item['link'] }}" class="btn-custom link-a" target="_blank">{!! $item['icon'] !!}</a>
-                        @endforeach
+                            <div class="store-buttons">
+                                @foreach ($data as $item)
+                                    <a href="{{ $item['link'] }}" class="btn-custom link-a animate__animated animate__bounceIn animate__delay-1s" target="_blank">{!! $item['icon'] !!}</a>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
-                    </div>
-                @endforeach
-            @else
-                <p>No projects are available.</p>
-            @endif
-        </div>
-
-        <!-- Navigation Buttons -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+            @endforeach
+        @else
+            <p class="animate__animated animate__shakeX">No projects are available.</p>
+        @endif
     </div>
 </div>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        new Swiper('.swiper', {
-            loop: true, 
-            slidesPerView: 3, 
-            spaceBetween: 20, 
-            centeredSlides: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                1024: { slidesPerView: 3 },
-                768: { slidesPerView: 2 },
-                480: { slidesPerView: 1 },
-            }
-        });
-    });
-</script>
 
 <!-- Styles -->
 <style>
@@ -101,77 +62,93 @@
         background: radial-gradient(circle, #001f3f, #000);
         color: white;
         text-align: center;
+        font-family: 'Courier New', Courier, monospace;
     }
 
     .projects-container {
         width: 90%;
-        margin: auto;
+        margin: 80px auto 20px;
         padding: 20px;
     }
 
-    .swiper {
-        padding: 50px 0;
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
     }
 
-    .swiper-slide {
-        position: relative;
-        width: 250px;
-        height: 500px;
-        perspective: 1000px;
-        transition: transform 0.5s ease-in-out;
-    }
-
-    .swiper-slide:nth-child(odd) {
-        transform: rotateY(10deg);
-    }
-
-    .swiper-slide:nth-child(even) {
-        transform: rotateY(-10deg);
-    }
-
-    .phone-frame {
-        background: black;
-        border-radius: 40px;
-        border: 5px solid #333;
+    /* تصميم التيرمنال */
+    .terminal-frame {
+        background: #222;
+        border: 1px solid #333;
+        border-radius: 5px;
         overflow: hidden;
-        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease;
     }
-
-    .phone-frame::before{
-        content: "**";
-    color: red;
-    font-weight: bold;
-    position: absolute;
-    top: 0px;
-    transform: translateX(1%);
-    width: 100px;
-    height: 25px;
-    background: black;
-    border: 2px solid;
-    border-radius: 0px 0px 11px 11px;
-
+    .terminal-frame:hover {
+        transform: scale(1.03);
     }
-    .phone-frame img {
+    .terminal-header {
+        background: #333;
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+    }
+    .terminal-buttons span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    .terminal-buttons .red {
+        background: #ff5f56;
+    }
+    .terminal-buttons .yellow {
+        background: #ffbd2e;
+    }
+    .terminal-buttons .green {
+        background: #27c93f;
+    }
+    .terminal-title {
+        font-size: 14px;
+        margin-left: 10px;
+        color: #fff;
+    }
+    .terminal-body {
+        padding: 15px;
+    }
+    .terminal-body img {
         width: 100%;
-        height: 58%;
-        object-fit: cover;
-        border-radius: 0px;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 3px;
     }
-
-    .swiper-button-next, .swiper-button-prev {
-        color: white;
+    .project-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
     }
-
-    .swiper-pagination-bullet {
-        background-color: white;
+    .project-description {
+        font-size: 14px;
+        margin-bottom: 10px;
     }
-    .link-a{
+    .store-buttons a {
+        text-decoration: none;
+        color: #fff;
+        background: #444;
+        padding: 5px 10px;
+        margin: 0 3px;
+        border-radius: 3px;
+        transition: background 0.3s ease;
+    }
+    .store-buttons a:hover {
+        background: #555;
+    }
+    .link-a {
         font-size: 13px;
-
     }
 </style>
 
 @endsection
-
-
-    

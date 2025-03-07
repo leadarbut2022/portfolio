@@ -1,322 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <style>
-        body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #53354a);
-            /* font-family: 'Arial', sans-serif; */
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-family: 'Roboto', sans-serif;
+@extends('layout')
 
-        }
-        h1 {
-            font-size: 3rem;
-            position: absolute;
-            top: 5%;
-            text-align: center;
-            width: 100%;
-            cursor: pointer;
-            z-index: 10;
-            color: #eaeaea;
-            user-select: none;
-            transition: transform 0.2s ease-in-out;
-        }
-        h2 {
-            font-size: 3rem;
-            position: absolute;
-            top: 23%;
-            text-align: center;
-            width: 100%;
-            cursor: pointer;
-            z-index: 10;
-            color: #eaeaea;
-            user-select: none;
-            transition: transform 0.2s ease-in-out;
-        }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .welcome-message {
-            /* background-color: #ffffff; */
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
-        }
+@section('title', 'Welcome - My Portfolio')
 
-        h1 {
-            font-size: 36px;
-            /* color: #007BFF; */
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        h2 {
-            font-size: 36px;
-            /* color: #007BFF; */
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        p {
-            font-size: 18px;
-            /* color: #555; */
-            line-height: 1.6;
-        }
+@section('styles')
+  <style>
+    /* تنسيق الحاوية التعريفية */
+    .intro-container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+      margin: 0 auto;
+      max-width: 600px;
+    }
+    .intro-container h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+    .intro-container h1:hover {
+      transform: scale(1.05);
+    }
+    .intro-container h2 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #eaeaea;
+      transition: color 0.2s;
+    }
+    .intro-container h2:hover {
+      color: #00ff00;
+    }
+    /* تأثير الكتابة بأسلوب التيرمنال */
+    .terminal {
+      font-family: "Courier New", monospace;
+      font-size: 18px;
+      color: #00ff00;
+      background-color: #000;
+      padding: 10px;
+      display: inline-block;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #00ff00;
+      margin-top: 20px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+      background-color: #00ff00;
+      margin-left: 3px;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    /* الكانفاس لخلفية الحركة */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+@endsection
 
-        .highlight {
-            /* color: #007BFF; */
-            font-weight: 700;
-        }
-    </style>
-</head>
-<body>
-
-<!-- <h1  class="animate__animated  animate__fadeInUpBig  animate__delay-0.1s">Welcome to my portfolio!</h1>
-
-<h2 onclick="openAboutPage(this)" class="animate__animated  animate__backInLeft   animate__delay-3s ">portfolio!</h2> -->
-<br>
-<h1 class="animate__animated animate__fadeInUpBig animate__delay-0.1s">Welcome to my portfolio!</h1>
-
-<!-- رابط للانتقال إلى صفحة أخرى -->
-<h2 onclick="openAboutPage(this)" class="animate__animated animate__backInLeft animate__delay-3s">Portfolio!</h2>
-
-    <!-- <h1 id="clickMeText" onclick="openAboutPage()">Portfolio</h1> -->
-    <!-- <h1 id="clickMeText" onclick="openAboutPage()">  Ahmed , a back end web developer</h1> -->
-    <!-- <div class="image-frame">
-        <img src="storage/pros/January2025/222.png" alt="Framed Image">
-    </div> -->
-    <div class="welcome-message animate__animated  animate__fadeInUpBig  animate__delay-1s">
-
-    <!-- <p class="">I'm Shami, a passionate back-end developer, dedicated to crafting smooth and efficient server-side solutions. Let's build something amazing! </p> -->
-    <!-- <a href="{{ route('projects') }}" class="animate__animated animate__fadeInUpBig animate__delay-2s">My Portfolio!</a> -->
-    <style>
-        /* تأثير شاشة الكونسول */
-        .terminal {
-            font-family: "Courier New", monospace;
-            font-size: 18px;
-            color: #00ff00; /* لون أخضر نيون يشبه الكود */
-            background-color: #000;
-            padding: 10px;
-            display: inline-block;
-            border-radius: 5px;
-            box-shadow: 0 0 10px #00ff00;
-        }
-
-        /* المؤشر اللامع */
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 18px;
-            background-color: #00ff00;
-            margin-left: 3px;
-            animation: blink 0.8s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        /* تحسينات العناوين */
-        h1, h2 {
-            text-align: center;
-            font-family: "Arial", sans-serif;
-            color: #ffffff;
-            text-shadow: 0 0 10px #00ffcc;
-        }
-
-        body {
-            background-color: #111;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-    </style>
-
-
-    <!-- عنوان متحرك عند الدخول -->
-
-    <!-- تأثير الكتابة -->
+@section('admin')
+  <!-- المحتوى التعريفي -->
+  <div class="intro-container animate__animated animate__fadeInUp">
+    <h1 class="animate__animated animate__fadeInDown">Welcome to My Portfolio!</h1>
     <div class="terminal">
-        <span id="typing-text"></span><span class="cursor">|</span>
+      <span id="typing-text"></span><span class="cursor">|</span>
     </div>
+    <h2 class="animate__animated animate__backInLeft animate__delay-1s" onclick="goToPortfolio()">Portfolio!</h2>
+  </div>
 
-    <script>
-        const text = "I'm Shami, a passionate back-end developer, dedicated to crafting smooth and efficient server-side solutions. Let's build something amazing!";
-        let index = 0;
+  <!-- canvas لخلفية الحركة -->
+  <canvas id="physicsCanvas"></canvas>
+@endsection
 
-        function typeEffect() {
-            if (index < text.length) {
-                document.getElementById("typing-text").innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeEffect, 50);
-            }
-        }
+@section('scripts')
+  <!-- Matter.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script>
+    // تأثير الكتابة
+    const text = "I'm Shami, a passionate back-end developer crafting smooth server-side solutions.";
+    let index = 0;
+    function typeEffect() {
+      if (index < text.length) {
+        document.getElementById("typing-text").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 50);
+      }
+    }
+    window.onload = typeEffect;
 
-        function openAboutPage(element) {
-            element.style.color = "#00ff00"; // تغيير اللون عند النقر
-            window.location.href = "about.html"; // الانتقال لصفحة أخرى (تعديل الرابط حسب الحاجة)
-        }
+    function goToPortfolio() {
+      window.location.href = "portfolio.html"; // حدّث الرابط حسب الحاجة
+    }
 
-        window.onload = typeEffect;
-    </script>
+    // إعداد Matter.js
+    const { Engine, Render, Runner, World, Bodies, Events, Body } = Matter;
+    const engine = Engine.create();
+    const { world } = engine;
+    const canvas = document.getElementById('physicsCanvas');
+    const render = Render.create({
+      canvas: canvas,
+      engine: engine,
+      options: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        wireframes: false,
+        background: 'transparent'
+      }
+    });
+    Render.run(render);
+    const runner = Runner.create();
+    Runner.run(runner, engine);
 
+    // تعريف التقنيات واللغات مع ألوان مميزة
+    const technologies = [
+      { name: 'PHP', color: '#2c2c54' },
+      { name: 'Laravel', color: '#40407a' },
+      { name: 'MySQL', color: '#706fd3' },
+      { name: 'HTML', color: '#3dc1d3' },
+      { name: 'CSS', color: '#34ace0' },
+      { name: 'Bootstrap', color: '#33d9b2' },
+      { name: 'JavaScript', color: '#ff5252' }
+    ];
 
-</div>
-       
+    // إنشاء الكرات مع أسماء التقنيات
+    const balls = technologies.map((tech) => {
+      const size = 80;
+      const ball = Bodies.circle(
+        Math.random() * window.innerWidth,
+        Math.random() * window.innerHeight,
+        size / 2,
+        { restitution: 1, friction: 0, frictionAir: 0.02, render: { fillStyle: tech.color } }
+      );
+      ball.customLabel = tech.name;
+      return ball;
+    });
+    World.add(world, balls);
 
+    // إضافة حدود للشاشة
+    const boundaries = [
+      Bodies.rectangle(window.innerWidth / 2, 0, window.innerWidth, 10, { isStatic: true }),
+      Bodies.rectangle(window.innerWidth / 2, window.innerHeight, window.innerWidth, 10, { isStatic: true }),
+      Bodies.rectangle(0, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true }),
+      Bodies.rectangle(window.innerWidth, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true })
+    ];
+    World.add(world, boundaries);
 
-    <canvas id="physicsCanvas"></canvas>
+    // تتبع حركة الماوس لتطبيق تأثير الجذب مع تأخير (هيستريسي)
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-    <!-- Matter.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-    <!-- JavaScript -->
-    <script>
-        const { Engine, Render, Runner, World, Bodies } = Matter;
+    // تطبيق قوة جذب على الكرات نحو مؤشر الماوس
+    Events.on(engine, 'beforeUpdate', function() {
+      balls.forEach((ball) => {
+        const dx = mouseX - ball.position.x;
+        const dy = mouseY - ball.position.y;
+        const forceMagnitude = 0.00005; // اضبط قيمة القوة حسب الرغبة
+        Body.applyForce(ball, ball.position, { x: dx * forceMagnitude, y: dy * forceMagnitude });
+      });
+    });
 
-        const engine = Engine.create();
-        const { world } = engine;
+    // رسم الكرات والنصوص عليها باستخدام canvas (تحديث مخصص)
+    const context = canvas.getContext('2d');
+    function renderBalls() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      balls.forEach((ball) => {
+        const pos = ball.position;
+        // رسم الدائرة
+        context.beginPath();
+        context.arc(pos.x, pos.y, 40, 0, 2 * Math.PI);
+        context.fillStyle = ball.render.fillStyle;
+        context.fill();
+        context.closePath();
+        // رسم اسم التقنية داخل الدائرة
+        context.font = '16px Arial';
+        context.fillStyle = '#fff';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText(ball.customLabel, pos.x, pos.y);
+      });
+      requestAnimationFrame(renderBalls);
+    }
+    renderBalls();
 
-        const canvas = document.getElementById('physicsCanvas');
-        const render = Render.create({
-            canvas: canvas,
-            engine: engine,
-            options: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-                wireframes: false,
-                background: 'transparent',
-            },
-        });
-
-        // ضبط حجم الشاشة عند التغيير
-        window.addEventListener('resize', () => {
-            render.canvas.width = window.innerWidth;
-            render.canvas.height = window.innerHeight;
-        });
-
-        Render.run(render);
-        const runner = Runner.create();
-        Runner.run(runner, engine);
-
-        // تعريف اللغات وألوانها الداكنة
-        const languages = [
-            { icon: '\uf457', color: '#2c2c54' }, // PHP
-            { icon: '\uf121', color: '#40407a' }, // Laravel
-            { icon: '\uf1c0', color: '#706fd3' }, // MySQL
-            { icon: '\uf13b', color: '#3dc1d3' }, // HTML
-            { icon: '\uf13c', color: '#34ace0' }, // CSS
-            { icon: '\uf836', color: '#33d9b2' }, // Bootstrap
-            { icon: '\uf3b8', color: '#ff5252' }, // JavaScript
-        ];
-
-        // إنشاء الكرات
-        const balls = languages.map((lang) => {
-            const size = 80;
-            const ball = Bodies.circle(
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerHeight,
-                size / 2,
-                {
-                    restitution: 1,
-                    friction: 0,
-                    render: {
-                        fillStyle: lang.color,
-                    },
-                }
-            );
-            ball.icon = lang.icon;
-            return ball;
-        });
-
-        World.add(world, balls);
-
-        // حدود الشاشة
-        const boundaries = [
-            Bodies.rectangle(window.innerWidth / 2, 0, window.innerWidth, 10, { isStatic: true }),
-            Bodies.rectangle(window.innerWidth / 2, window.innerHeight, window.innerWidth, 10, { isStatic: true }),
-            Bodies.rectangle(0, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true }),
-            Bodies.rectangle(window.innerWidth, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true }),
-        ];
-        World.add(world, boundaries);
-
-        // رسم الأيقونات فوق الكرات
-        const context = canvas.getContext('2d');
-        function renderIcons() {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            balls.forEach((ball) => {
-                const pos = ball.position;
-
-                // رسم الدائرة
-                context.beginPath();
-                context.arc(pos.x, pos.y, 40, 0, 2 * Math.PI);
-                context.fillStyle = ball.render.fillStyle;
-                context.fill();
-                context.closePath();
-
-                // رسم الأيقونة
-                context.font = '30px FontAwesome';
-                context.fillStyle = '#fff';
-                context.textAlign = 'center';
-                context.textBaseline = 'middle';
-                context.fillText(ball.icon, pos.x, pos.y);
-            });
-
-            // استمرارية التحديث
-            requestAnimationFrame(renderIcons);
-        }
-        renderIcons(); // بدء تحديث الأيقونات والحركة
-
-        // حركة النص "Click Me"
-        let angle = 0;
-        const clickMeText = document.getElementById('clickMeText');
-        function moveClickMeText() {
-            // تحريك النص على مسار دائري
-            angle += 0.01; // سرعة الحركة
-            const radius = 200;
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-
-            clickMeText.style.transform = `translate(-50%, -50%) translate(${centerX + radius * Math.cos(angle)}px, ${centerY + radius * Math.sin(angle)}px)`;
-
-            requestAnimationFrame(moveClickMeText); // استمرارية الحركة
-        }
-        moveClickMeText(); // بدء حركة النص
-
-        function openAboutPage() {
-            window.location.href = "{{ route('projects') }}";
-        }
-      
-
-        function openAboutPage(element) {
-        
-            element.classList.remove('animate__backInLeft', 'animate__delay-3s');
-            element.classList.add('animate__hinge');
-
-            element.style.animationDuration = '2s';
-            setTimeout(() => {
-                window.location.href = "{{ route('projects') }}";
-            }, 200); // 2000ms matches the animation duration
-        }
-    </script>
-</body>
-</html>
+    // تحديث حجم الكانفاس عند تغيير حجم النافذة
+    window.addEventListener('resize', () => {
+      render.canvas.width = window.innerWidth;
+      render.canvas.height = window.innerHeight;
+    });
+  </script>
+@endsection
